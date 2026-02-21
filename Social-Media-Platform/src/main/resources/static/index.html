@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fav-Z | Share Your Vibe</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Auth Section -->
+        <section id="auth-section" class="vh-100 d-flex align-items-center">
+            <div class="auth-container glass">
+                <div class="auth-box" id="login-box">
+                    <h1 class="brand-title">Fav<span>-Z</span></h1>
+                    <p class="subtitle">Enter your details to stay connected</p>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" required placeholder="Email Address">
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" required placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn-primary">Login Now</button>
+                    </form>
+                    <p class="toggle-auth">Don't have an account? <a href="#" onclick="toggleAuth('register')">Create
+                            one</a></p>
+                </div>
+
+                <div class="auth-box hidden" id="register-box">
+                    <h1 class="brand-title">Fav<span>-Z</span></h1>
+                    <p class="subtitle">Join our creative community today</p>
+                    <form id="register-form">
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <input type="text" id="reg-firstname" required placeholder="First Name">
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="reg-lastname" required placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="reg-username" required placeholder="Username">
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="reg-email" required placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="reg-password" required placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn-primary">Register Account</button>
+                    </form>
+                    <p class="toggle-auth">Already have an account? <a href="#" onclick="toggleAuth('login')">Login</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Section -->
+        <section id="main-section" class="hidden">
+            <nav class="glass-nav">
+                <div class="nav-content">
+                    <h1 class="logo">Fav<span>-Z</span></h1>
+                    <div class="nav-actions">
+                        <div class="user-badge glass">
+                            <span id="user-display"></span>
+                        </div>
+                        <button onclick="logout()" class="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="container">
+                <div class="feed-layout">
+                    <!-- Sidebar -->
+                    <aside class="sidebar-wrapper">
+                        <div class="profile-card glass">
+                            <div class="profile-header">
+                                <div class="avatar-ring">
+                                    <div class="avatar" id="profile-avatar">U</div>
+                                </div>
+                                <h3 id="profile-name">User Name</h3>
+                                <p id="profile-username">@username</p>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="stat-value" id="stat-posts">0</span>
+                                    <span class="stat-label">Posts</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value" id="stat-likes">0</span>
+                                    <span class="stat-label">Vibes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Feed -->
+                    <div class="feed">
+                        <div class="create-post glass">
+                            <div class="post-input-wrapper">
+                                <textarea id="post-content" placeholder="Share your vibe today..."></textarea>
+                            </div>
+                            <div class="post-preview hidden" id="image-preview-container">
+                                <img id="image-preview" src="" alt="Preview">
+                                <button onclick="clearImage()" class="btn-clear"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="post-actions">
+                                <label for="post-image-file" class="btn-icon">
+                                    <i class="fas fa-image"></i>
+                                    <span>Add Image</span>
+                                    <input type="file" id="post-image-file" class="hidden" accept="image/*"
+                                        onchange="previewImage()">
+                                </label>
+                                <button onclick="createPost()" class="btn-post">Post <i
+                                        class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+
+                        <div id="posts-container" class="posts-list">
+                            <!-- Posts will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </section>
+    </div>
+
+    <div id="notification" class="notification hidden"></div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
